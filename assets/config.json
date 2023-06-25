@@ -1,5 +1,8 @@
 {
     "GIN_MODE": "DEBUG",
+    "DATABASE": {
+        "PATH": "assets/database.sqlite"
+    },
     "ADDRESS": "0.0.0.0",
     "PORT": "90"
 }

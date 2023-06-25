@@ -15,7 +15,7 @@ func OpenDatabase() (*gorm.DB, error) {
 		return database, nil
 	}
 
-	path := viper.GetString("DATABASE")
+	path := viper.GetString("DATABASE.PATH")
 	db, err := gorm.Open(sqlite.Open(path), &gorm.Config{})
 
 	if err != nil {
