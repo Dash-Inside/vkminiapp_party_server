@@ -1,11 +1,25 @@
 package handler
 
 import (
+	"partyserver/internal/domain/gameuser"
+
 	"github.com/gin-gonic/gin"
 )
 
-func (*handler) CreateUser(*gin.Context) {
-	panic("unimplemented")
+func (h *handler) CreateUser(c *gin.Context) {
+	createUserParams := gameuser.CreateUserParams{}
+
+	if err := c.Bind(createUserParams); err != nil {
+		HandleError(c, err)
+		return
+	}
+
+	if err := h.userReposiory.Create(createUserParams); err != nil {
+		HandleError(c, err)
+		return
+	}
+
+	HandleResponse(c, createUserParams)
 }
 
 func (*handler) DeleteUser(*gin.Context) {
