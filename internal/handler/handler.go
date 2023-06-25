@@ -7,20 +7,21 @@ type handler struct {
 }
 
 type Handler interface {
-	init() error
+	CreateUser(*gin.Context)
+	ReadUser(*gin.Context)
+	UpdateUser(*gin.Context)
+	DeleteUser(*gin.Context)
 }
 
 func NewGameHandler(ge *gin.Engine) Handler {
-	return &handler{
+	handler := &handler{
 		engine: ge,
 	}
-}
 
-func (h *handler) init() error {
-	h.engine.POST("/user")
-	h.engine.GET("/user/:id")
-	h.engine.PUT("/user/:id")
-	h.engine.DELETE("/user/:id")
+	ge.POST("/user", handler.CreateUser)
+	ge.GET("/user/:id", handler.ReadUser)
+	ge.PUT("/user/:id", handler.UpdateUser)
+	ge.DELETE("/user/:id", handler.DeleteUser)
 
-	return nil
+	return handler
 }
