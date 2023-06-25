@@ -19,3 +19,4 @@ go.work
 
 # Development stuff
 dev/
+assets/config.json
