@@ -2,6 +2,8 @@ package server
 
 import (
 	"context"
+	"partyserver/internal/database"
+	"partyserver/internal/handler"
 	"partyserver/internal/logger"
 	"partyserver/internal/router"
 
@@ -31,7 +33,9 @@ func loop(lifecycle fx.Lifecycle, router *gin.Engine) {
 func RunServer() error {
 	app := fx.New(
 		fx.Provide(logger.NewLogger),
+		fx.Provide(database.ProvideDatabase),
 		fx.Provide(router.NewRouterDelivery),
+		fx.Provide(handler.NewHandler),
 		fx.Invoke(loop),
 	)
 
