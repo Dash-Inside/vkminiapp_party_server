@@ -2,6 +2,6 @@ package router
 
 import "github.com/gin-gonic/gin"
 
-func NewRouterDelivery() *gin.Engine {
+func ProvideRouter() *gin.Engine {
 	return gin.Default()
 }

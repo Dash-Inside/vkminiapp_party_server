@@ -34,7 +34,7 @@ func RunServer() error {
 	app := fx.New(
 		fx.Provide(logger.NewLogger),
 		fx.Provide(database.ProvideDatabase),
-		fx.Provide(router.NewRouterDelivery),
+		fx.Provide(router.ProvideRouter),
 		fx.Provide(handler.NewHandler),
 		fx.Invoke(loop),
 	)
