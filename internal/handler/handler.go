@@ -1,9 +1,14 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"partyserver/internal/domain/gameuser"
+
+	"github.com/gin-gonic/gin"
+)
 
 type handler struct {
-	engine *gin.Engine
+	engine        *gin.Engine
+	userReposiory gameuser.Repository
 }
 
 type Handler interface {
@@ -13,7 +18,7 @@ type Handler interface {
 	DeleteUser(*gin.Context)
 }
 
-func NewGameHandler(ge *gin.Engine) Handler {
+func NewHandler(ge *gin.Engine) Handler {
 	handler := &handler{
 		engine: ge,
 	}
