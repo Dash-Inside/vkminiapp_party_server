@@ -1,13 +1,14 @@
 package handler
 
 import (
+	"log"
 	"partyserver/internal/domain/gameuser"
 
 	"github.com/gin-gonic/gin"
 )
 
 type handler struct {
-	engine        *gin.Engine
+	// engine        *gin.Engine
 	userReposiory gameuser.Repository
 }
 
@@ -20,8 +21,10 @@ type Handler interface {
 
 func NewHandler(ge *gin.Engine) Handler {
 	handler := &handler{
-		engine: ge,
+		// engine: ge,
 	}
+
+	log.Println("Handler init")
 
 	ge.POST("/user", handler.CreateUser)
 	ge.GET("/user/:id", handler.ReadUser)

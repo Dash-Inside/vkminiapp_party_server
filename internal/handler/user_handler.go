@@ -9,7 +9,7 @@ import (
 func (h *handler) CreateUser(c *gin.Context) {
 	createUserParams := gameuser.CreateUserParams{}
 
-	if err := c.Bind(createUserParams); err != nil {
+	if err := c.Bind(&createUserParams); err != nil {
 		HandleError(c, err)
 		return
 	}

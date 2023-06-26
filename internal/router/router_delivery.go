@@ -1,7 +1,14 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"partyserver/internal/handler"
+
+	"github.com/gin-gonic/gin"
+)
 
 func ProvideRouter() *gin.Engine {
-	return gin.Default()
+	engine := gin.Default()
+	handler.NewHandler(engine)
+
+	return engine
 }

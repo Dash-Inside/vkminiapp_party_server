@@ -4,7 +4,6 @@ import (
 	"context"
 	"partyserver/internal/database"
 	"partyserver/internal/domain/gameuser"
-	"partyserver/internal/handler"
 	"partyserver/internal/logger"
 	"partyserver/internal/router"
 
@@ -37,7 +36,6 @@ func RunServer() error {
 		fx.Provide(database.ProvideDatabase),
 		fx.Provide(gameuser.ProvideUserRepository),
 		fx.Provide(router.ProvideRouter),
-		fx.Provide(handler.NewHandler),
 		fx.Invoke(loop),
 	)
 
