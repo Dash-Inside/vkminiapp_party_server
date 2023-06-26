@@ -1,6 +1,9 @@
 package gameuser
 
-import "gorm.io/gorm"
+import (
+	"github.com/google/uuid"
+	"gorm.io/gorm"
+)
 
 type repository struct {
 	database *gorm.DB
@@ -36,8 +39,21 @@ func NewRepository(db *gorm.DB) Repository {
 	}
 }
 
-func (*repository) Create(CreateUserParams) error {
-	panic("unimplemented")
+func (r *repository) Create(cup CreateUserParams) error {
+	uuid, _ := uuid.NewUUID()
+	user := GameUser{
+		UUID:     uuid.String(),
+		Nickname: cup.nickname,
+		IsActive: false,
+	}
+
+	_ = r.database.Create(&user).Error
+
+	// if err := tx.Error; err != nil {
+	// 	return err
+	// }
+
+	return nil
 }
 
 func (*repository) Delete(DeleteUserParams) error {
