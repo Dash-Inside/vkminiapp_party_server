@@ -3,6 +3,6 @@
     "DATABASE": {
         "PATH": "assets/database.sqlite"
     },
-    "ADDRESS": "127.0.0.0",
+    "ADDRESS": "127.0.0.1",
     "PORT": "90"
 }
