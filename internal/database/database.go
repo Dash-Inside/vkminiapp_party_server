@@ -10,18 +10,18 @@ var (
 	database *gorm.DB
 )
 
-func OpenDatabase() (*gorm.DB, error) {
+func ProvideDatabase() (*gorm.DB, error) {
 	if database != nil {
 		return database, nil
 	}
 
 	path := viper.GetString("DATABASE.PATH")
 	db, err := gorm.Open(sqlite.Open(path), &gorm.Config{})
-
 	if err != nil {
 		return nil, err
 	}
 
 	database = db
+
 	return database, nil
 }
