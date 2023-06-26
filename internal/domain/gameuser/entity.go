@@ -3,7 +3,7 @@ package gameuser
 type GameUser struct {
 	UUID     string
 	Nickname string
-	isActive bool
+	IsActive bool
 }
 
 type GameUserGame struct {
